@@ -17,9 +17,14 @@ const knex = require('./db.js');
   GET ALL Travellers
 */
 app.get('/travel', (req, res) => {
-  knex('travel').then((rows) =>  res.json(rows));
+  knex('travel').then((rows) => {
+    res.format({
+      'application/json': () => res.json(rows),
+      'text/html': () => res.render('travel/index', { travel: rows }),
+      'default': () => res.sendStatus(406)
+    });
+  });
 });
-
 /*
   CREATE A Traveller
 */
