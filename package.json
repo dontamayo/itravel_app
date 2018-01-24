@@ -4,7 +4,8 @@
   "description": "---------------------------------- \"All the challenges and opportunities travel lays at your feet help you discover who you are in a way that’s only possible on the road\". ----------------------------------",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
