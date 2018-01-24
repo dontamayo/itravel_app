@@ -26,6 +26,9 @@ app.get('/travel', (req, res) => {
   });
 });
 
+/*
+FETCH A NEW FORM
+*/
 app.get('/travel/new', (req, res) => {
   res.render('travel/new');
 });
@@ -45,15 +48,15 @@ app.post('/travel', (req, res) => {
     .insert(newTraveler) // INSERTS A NEW Traveller
     .returning('*')
     .then((rows) => {
-      const bird = rows[0];
+      const travel = rows[0];
 
       res.format({
         'application/json': () => res.json(travel),
-        'text/html': () => res.redirect('/birds/' + travel.id),
+        'text/html': () => res.redirect('/travel/' + travel.id),
         'default': () => res.sendStatus(406)
       })
     }).catch({
-      res.format({
+      res.format({    //getting errors here
         'application/json': () => res.sendStatus(400),
         'text/html': () => res.redirect('/travel/new')
       })
@@ -64,16 +67,21 @@ app.post('/travel', (req, res) => {
   FETCH A person
 */
 app.get('/travel/:person_id', (req, res) => {
-  const personId = req.params.bird_id;
+  const personId = req.params.person_id;
 
   knex('travel')
-  .where('id', personId) // look for bird_id
+  .where('id', personId) // look for  a person
   .then((rows) => {
     const foundPerson = rows[0];
 
-    res.json(foundPerson);
+    res.format({
+     'application/json': () => res.json(foundPerson),
+     'text/html': () => res.render('/travel/show', { travel: foundPerson }), //questionable!
+     'default': () => res.sendStatus(406)
+    })
   })
   .catch(() => {
+
     res.sendStatus(404);
   });
 });
@@ -82,7 +90,7 @@ app.get('/travel/:person_id', (req, res) => {
   PATCH A PERSON
 */
 app.patch('/travel/:person_id', (req, res) => {
-  const personId = req.params.bird_id;
+  const personId = req.params.person_id;
   const { title, description } = req.body;
 
   knex('travel')
@@ -104,7 +112,7 @@ app.patch('/travel/:person_id', (req, res) => {
 */
 app.delete('/travel/:person_id', (req, res) => {
   knex('travel')
-    .where('id', req.params.bird_id)
+    .where('id', req.params.person_id)
     .del()
     .then(() => res.sendStatus(204));
 });
