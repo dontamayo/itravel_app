@@ -14,45 +14,45 @@ app.use(express.static('public'));
 const knex = require('./db.js');
 
 /*
-  GET ALL BIRDS
+  GET ALL Travellers
 */
-app.get('/birds', (req, res) => {
-  knex('birds').then((rows) =>  res.json(rows));
+app.get('/travel', (req, res) => {
+  knex('travel').then((rows) =>  res.json(rows));
 });
 
 /*
-  CREATE A BIRD
+  CREATE A Traveller
 */
-app.post('/birds', (req, res) => {
+app.post('/travel', (req, res) => {
   const { title, description } = req.body;
 
-  const newBird = {
+  const newTraveler = {
     title,
     description
   };
 
-  knex('birds')
-    .insert(newBird) // INSERTS A NEW BIRD
+  knex('travel')
+    .insert(newTraveler) // INSERTS A NEW Traveller
     .returning('*')
     .then((rows) => {
       const bird = rows[0];
 
-      res.json(bird);
+      res.json(travel);
     });
 });
 
 /*
-  FETCH A BIRD
+  FETCH A person
 */
-app.get('/birds/:bird_id', (req, res) => {
-  const birdId = req.params.bird_id;
+app.get('/travel/:person_id', (req, res) => {
+  const personId = req.params.bird_id;
 
-  knex('birds')
-  .where('id', birdId) // look for bird_id
+  knex('travel')
+  .where('id', personId) // look for bird_id
   .then((rows) => {
-    const foundBird = rows[0];
+    const foundPerson = rows[0];
 
-    res.json(foundBird);
+    res.json(foundPerson);
   })
   .catch(() => {
     res.sendStatus(404);
@@ -60,20 +60,20 @@ app.get('/birds/:bird_id', (req, res) => {
 });
 
 /*
-  PATCH A BIRD
+  PATCH A PERSON
 */
-app.patch('/birds/:bird_id', (req, res) => {
-  const birdId = req.params.bird_id;
+app.patch('/travel/:person_id', (req, res) => {
+  const personId = req.params.bird_id;
   const { title, description } = req.body;
 
-  knex('birds')
-    .where('id', birdId)
+  knex('travel')
+    .where('id', personId)
     .returning('*')
     .update({ title, description })
     .then((rows) => {
-      const bird = rows[0];
+      const person = rows[0];
 
-      res.json(bird);
+      res.json(person);
     })
     .catch(() => {
       res.sendStatus(400);
@@ -81,10 +81,10 @@ app.patch('/birds/:bird_id', (req, res) => {
 });
 
 /*
-  DELETE A BIRD
+  DELETE A PERSON
 */
-app.delete('/birds/:bird_id', (req, res) => {
-  knex('birds')
+app.delete('/travel/:person_id', (req, res) => {
+  knex('travel')
     .where('id', req.params.bird_id)
     .del()
     .then(() => res.sendStatus(204));

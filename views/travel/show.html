@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+    .navbar-custom {
+      background-color: #89C4F4;
+      border-color: #89C4F4;
+    }
+
+    .traveller img {
+      height: 100px;
+    }
+  </style>
+
+</head>
+<body class="container">
+  <div class="navbar-default navbar navbar-custom">
+    <div class="navbar-brand">iTravel</div>
+  </div>
+
+  <div class="jumbotron" style="height: 200px;  background-position: center; background-image: url(https://www.globe.gov/globe-gov-measurements-portlet/img/map-background.png)">
+    <div class="row">
+      <h1 class="col-xs-4 col-xs-offset-4">iTravel</h1>
+    </div>
+  </div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li><a href="#addTodo" aria-controls="profile" data-toggle="tab">Tell Us About You</a></li>
+      <li><a href="#todos" aria-controls="messages" data-toggle="tab">Fellow Travellers</a></li>
+    </ul>
+
+
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <!-- BEGIN FORM PANE  -->
+      <div class="tab-pane" id="addTodo">
+        <div class="row">
+          <!-- BEGIN FORM -->
+          <form id="newTodo" class="col-xs-8 col-xs-offset-2">
+            <div class="form-group">
+              <label>Fullname:</label>
+              <input id="fullname" type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Image Link:</label>
+              <input id="img-link" type="url" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Interests</label>
+              <textarea id="interests" class="form-control"></textarea>
+            </div>
+
+            <button class="btn btn-primary">Save</button>
+          </form> <!-- END FORM -->
+        </div>
+      </div><!-- END FORM PANE -->
+
+      <!-- BEGIN TODOS PANE -->
+      <div role="tabpanel" class="tab-pane container" id="todos">
+        <h2>Meet Your Travel Buddy</h2>
+
+        <div class="container">
+          <div class="row">
+           <div id="todoList" class="col-xs-8 col-xs-offset-2">
+             <hr/>
+             <!-- Start Traveller -->
+             <div class="traveller">
+               <h3>Jane Smith</h3>
+               <img src="http://img.allw.mn/content/movies/2013/07/5_jane-smith-in-mr-mrs-smith.jpg"/>
+
+               <div>
+                 <label>Interests:</label>
+                 <p>Loves dogs, monster trucks, fire...</p>
+               </div>
+
+               <div>
+                 <label>Motto:</label>
+                 <p>Life is short</p>
+               </div>
+
+               <div>
+                 <label>About Me:</label>
+                 <p>Loves dogs, monster trucks, fire...</p>
+               </div>
+
+               <div>
+                 <label>Previous Destinations:</label>
+                 <p>Loves dogs, monster trucks, fire...</p>
+               </div>
+             </div><!-- End Traveller -->
+            <hr/>
+           <!-- Start Traveller -->
+           <div class="traveller">
+               <h3>Jon Andrews</h3>
+               <img src="https://cdn.menprovement.com/wp-content/uploads/2014/10/how-not-to-be-a-cool-guy.jpg"/>
+
+               <div>
+                 <label>Interests:</label>
+                 <p>Loves dogs, monster trucks, fire...</p>
+               </div>
+
+               <div>
+                 <label>Motto:</label>
+                 <p>Life is short</p>
+               </div>
+
+               <div>
+                 <label>About Me:</label>
+                 <p>Loves dogs, monster trucks, fire...</p>
+               </div>
+
+               <div>
+                 <label>Previous Destinations:</label>
+                 <p>Loves dogs, monster trucks, fire...</p>
+               </div>
+           </div><!-- End Traveller -->
+          </div>
+        </div>
+      </div><!-- END TODOS PANE -->
+
+    </div> <!-- End Tab Panes -->
+
+</body>
+</html>
