@@ -25,6 +25,11 @@ app.get('/travel', (req, res) => {
     });
   });
 });
+
+app.get('/travel/new', (req, res) => {
+  res.render('travel/new');
+});
+
 /*
   CREATE A Traveller
 */
@@ -42,8 +47,17 @@ app.post('/travel', (req, res) => {
     .then((rows) => {
       const bird = rows[0];
 
-      res.json(travel);
-    });
+      res.format({
+        'application/json': () => res.json(travel),
+        'text/html': () => res.redirect('/birds/' + travel.id),
+        'default': () => res.sendStatus(406)
+      })
+    }).catch({
+      res.format({
+        'application/json': () => res.sendStatus(400),
+        'text/html': () => res.redirect('/travel/new')
+      })
+    })
 });
 
 /*
